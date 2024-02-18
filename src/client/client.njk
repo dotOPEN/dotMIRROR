@@ -1,0 +1,92 @@
+{% set title = ".MOE Booru Client" %}
+{% extends "_templates/body.njk" %}
+
+{% block content %}
+    <link rel="stylesheet" href="styles/client.css">
+    
+    <div class="p-2 h-100 text-bg-secondary overflow-hidden w-25" style="word-break: break-all;">
+        <h3 id="provider">Loading...</h3>
+        <br>
+
+        <span>Size: </span><span id="size">Loading...</span><br>
+        <span>Author: </span><span id="author">Loading...</span><br>
+        <span>Source: </span><span id="source">Loading...</span>
+        <br><br>
+
+        <span>Approved: </span><span id="approved">0</span><br>
+        <span>Page: </span><span id="page">0</span><br>
+        <span>Images left: </span><span id="imagesLeft">0</span><br>
+        <span id="cached">0</span><span> images have been cached!</span>
+        <br><br>
+
+        <label class="form-label mb-2" for="customMessage">
+            Message (optional)
+            <input class="form-control" type="text" name="customMessage" id="customMessage">
+        </label>
+        <div class="collapse" id="collapseWarningMessage">
+            <label class="form-label mb-2" for="warningMessage">
+                Warning message
+                <input class="form-control" type="text" name="warningMessage" id="warningMessage">
+            </label>
+        </div>
+        <div class="form-text text-white">Press <b>Alt</b> key to unfocus</div>
+    </div>
+
+    <main class="p-3 position-relative w-100 d-flex align-items-center justify-content-center overflow-hidden">
+        <div id="uploading" class="spinner-border spinner position-absolute end-0 top-0 m-2 text-info opacity-0" role="status">
+            <span class="visually-hidden">Uploading...</span>
+        </div>
+
+        <div class="position-absolute z-3 top-0 start-0 m-2 w-auto h-25 text-center" style="cursor: pointer;">
+            <div class="mb-2">Last Approved</div>
+            <img id="lastApproved" alt="Last Approved">
+        </div>  
+
+        <img class="content placeholder-glow" alt="Content">
+
+        <div id="controlPC" class="position-absolute bottom-0 end-0 p-2 pe-3 w-100 d-none d-lg-flex justify-content-end" style="background-color: rgba(0, 0, 0, 0.6);">
+            <div id="keyEnter" class="small me-2 ps-1 pe-1 text-bg-light rounded">Enter</div>Approve
+            <div id="keyShift" class="small ms-5 me-2 ps-1 pe-1 text-bg-light rounded">Shift</div>Decline
+            <div id="keyE" class="small ms-5 me-2 ps-2 pe-2 text-bg-light rounded">E</div><span>Flag as Suggestive</span>
+            <div id="keyQ" class="small ms-5 me-2 ps-2 pe-2 text-bg-light rounded">Q</div><span>Switch to Smaller Preview</span>
+        </div>
+    </main>
+
+    <div class="modal fade" data-bs-theme="dark" id="rulesModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="rulesModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="rulesModalLabel">Heyya!</h1>
+                </div>
+
+                <div class="modal-body">
+                    Here's the thing you need to know:
+
+                    <ul>
+                        <li>If it looks cute, approve it.</li>
+                        <li>If it doesn't, decline it.</li>
+                        <li>If it looks sexy, decline it. (duh, we need cuties)</li>
+                        <li>If it looks cute but suggestive, flag it as suggestive and then approve it.</li>
+                        <li>If it looks explicit, (duh) decline it.</li>
+                        <br>
+                        <li>Every cached images lifetime is 1 minute, so you better moderating them in one caching process or you gotta have to wait every image to load.</li>
+                    </ul>
+                    
+                    I think that's all. Good luck!
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Aight</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block script %}
+    {% if inlineScript %}
+        {{ inlineScript | safe }}
+    {% else %}
+        <script src="scripts/client.js"></script>
+    {% endif %}
+{% endblock script %}

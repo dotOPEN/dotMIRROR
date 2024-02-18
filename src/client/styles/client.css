@@ -1,0 +1,20 @@
+img.content, img#lastApproved {
+    max-width: 100%;
+    max-height: 100%;
+    height: auto;
+    width: auto;
+    border-radius: .5rem;
+    transition: .3s;
+}
+
+img.content.blur {
+    filter: blur(15px);
+}
+
+img:not([src]) {
+    visibility: hidden;
+}
+
+img#lastApproved:hover {
+    opacity: .5;
+}

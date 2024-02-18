@@ -1,0 +1,24 @@
+{% set title = "Login | .MOE Booru Client" %}
+{% extends "_templates/body.njk" %}
+
+{% block content %}
+    <form class="text-bg-secondary p-3 rounded m-2" method="post" action="/login">
+        {% if incorrect %}
+            <div class="alert alert-danger" role="alert">
+                Who the fudge are you?!
+                <br>
+                What are you doin' here?!
+            </div>
+        {% endif %}
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input class="form-control" type="email" name="email" id="email" autocomplete="email">
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" name="password" id="password" class="form-control" autocomplete="current-password">
+        </div>
+        
+        <button class="btn btn-dark" type="submit">Login</button>
+    </form>
+{% endblock content %}
