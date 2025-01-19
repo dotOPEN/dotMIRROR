@@ -9,7 +9,8 @@
 
 ## Supported Platforms
 - Facebook Page
-- Booru
+- Safebooru
+- Konachan
 
 Other platforms will be supported if there is demand.
 
